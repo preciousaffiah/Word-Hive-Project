@@ -7,16 +7,15 @@
 
 
 .confetti{
-    max-width: 100%;
-    display: block;
-    margin: 0 auto;
-    user-select: none;
-    position: absolute;
-    bottom: 0;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+  position: absolute;
  }
  .box{
     width: 100%;
-    /* position: absolute; */
+    position: absolute;
     margin-top: 40px;
  }
  .container{
@@ -26,17 +25,18 @@
     position: relative;;
  }
  .modal{
+    visibility: hidden;
     height: 100vh;
-    position: relative;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    margin: auto;
     justify-content: center;
     align-items: center;
- }
+}
  .dialogueBox{
     border-radius: 10px;
     color: white;
+    position: absolute;
+    z-index: 1;
     background: purple;
     font-size: 0.7rem;
     padding: 24px 10px;
@@ -357,6 +357,12 @@
   }
   body {
     overflow-x: hidden;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
   }
   /* .block::after {
     content: "🐝";

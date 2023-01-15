@@ -3,7 +3,7 @@
 // check if letter does not exist in new array and if the new array is upto 40 letters => push into new array
 // else if all leters have been pushed and non is repeating but array is not upto 40 letters => push letters into new array till array letters are up to 40
 
-const level1Words = [['t', 'a', 'p'], ['c', 'u', 'p'], ['p', 'e', 't']];
+const level1Words = [['t', 'a', 'p'], ['c', 'u', 'p'], ['p', 'e', 't'], ['a', 'c', 'e'], ['c', 'a', 'b'], ['d', 'o', 'g']];
 var randomIndex3 = Math.floor(Math.random() * level1Words.length);
 // level1Words.push(level1Words[randomIndex3]);
 var level1Index = level1Words[randomIndex3];

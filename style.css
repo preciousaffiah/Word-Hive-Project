@@ -5,14 +5,6 @@
 
 }
 
-
-.confetti{
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-  user-select: none;
-  position: absolute;
- }
  .box{
     width: 100%;
     position: absolute;
@@ -26,8 +18,11 @@
  }
  .modal{
     visibility: hidden;
-    height: 100vh;
-    /* width: 100%; */
+    height: 120vh;
+    background: #000000a3;
+    /* position: absolute; */
+    z-index: 1;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,6 +50,7 @@
     padding: 4px 10px;
     text-align: center;
  }
+
 
  /* be hive */
   body {
@@ -100,6 +96,20 @@
     box-shadow: inset 0 0 40px 20px #ff9a0073;
     transition: clip-path 300ms, background-color 300ms;
   }
+
+  .next{
+    background-color: #07bf9d;
+    width: 7rem;
+    color: white;
+    border: 2px dotted red;
+    height: 40px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+   }
   /* .block:hover {
     background-color: tomato;
   } */
@@ -425,8 +435,7 @@
   }
   p span {
     font-weight: bold;
-    font-style: italic;
-    color: #3d5afe;
+    font-size: 1.3rem;
   }
  
   

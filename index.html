@@ -9,36 +9,26 @@
     <title>Document</title>
 </head>
 <body>
-<canvas class="confetti" id="canvas">
-    </canvas>
 	<!-- congratulations modal -->
 	<div class="modal">
 		<div class="dialogueBox">
-			<h2>congratulations,<br> you have won this level</h2>
-		<button>
-			Continue
+			<h2 id="actionMsg">congratulations,<br> you have won this level</h2>
+		<button id="reloadbtn">
+			Okay
 		</button>
 		</div>
 	</div>
    
 	<div class="box">
-		<h1>You have 3 words to go!</h1>
-		<p>words to find: you, cow, leg</p>
+		<h1>Welcome to Wordhive!</h1>
+		<p>word to find: <span id="wordToFind"></span></p>
 		<div class="container">
 			<div id="grid" class="grid">
 				
 			</div>
 		</div>
-		<footer>
-			<p>Leave a comment if you have a better idea on how to proceed 😁 </p>
-		</footer>
-
+		<p class="next" id="next">Next</p>
     </div>
-
-
-	<button id="action">click me</button>
-
-    
 
 	
     <script src="./app.js"></script>

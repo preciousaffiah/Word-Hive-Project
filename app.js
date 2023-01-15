@@ -1,140 +1,97 @@
-const ArrayOfLetters = ['a','k','j','l','v','r','o','v','r','j','w','f','k','j','l','w','f','m','w','f','a','d','v','b','q','h','b','r','o','v','r','l','v','r','o','k','j','l','w','f',];
-const grid = document.getElementById("grid");
+// randomize original array
+// make new array 
+// check if letter does not exist in new array and if the new array is upto 40 letters => push into new array
+// else if all leters have been pushed and non is repeating but array is not upto 40 letters => push letters into new array till array letters are up to 40
 
-ArrayOfLetters.forEach((n) => (grid.innerHTML += `<div class='block'>${n}</div>`));
+const level1Words = [['t', 'a', 'p'], ['c', 'u', 'p'], ['p', 'e', 't']];
+var randomIndex3 = Math.floor(Math.random() * level1Words.length);
+// level1Words.push(level1Words[randomIndex3]);
+var level1Index = level1Words[randomIndex3];
+console.log('word to find is ', level1Index);
+const ArrayOfLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ...level1Index];
+const grid = document.getElementById("grid");
+const reloadbtn = document.getElementById("reloadbtn");
+const actionMsg = document.getElementById("actionMsg");
+const wordToFind = document.getElementById("wordToFind");
+const modal = document.querySelector('.modal');
+
+wordToFind.innerHTML = level1Index.join('');
+var Newarray = [];
+var currentIndex = ArrayOfLetters.length, randomIndex;
+// While there remain elements to shuffle. 
+while (currentIndex != 0) {
+  // Pick a remaining element.
+  randomIndex = Math.floor(Math.random() * currentIndex); currentIndex--;
+  // And swap it with the current element. 
+  [ArrayOfLetters[currentIndex], ArrayOfLetters[randomIndex]] = [ArrayOfLetters[randomIndex], ArrayOfLetters[currentIndex]];
+}
+
+if (ArrayOfLetters.length < 41) {
+  console.log('chee');
+  for (let i = 0; i < 12; i++) {
+    var randomIndex2 = Math.floor(Math.random() * ArrayOfLetters.length);
+    ArrayOfLetters.push(ArrayOfLetters[randomIndex2])
+
+  }
+}
+
+console.log(ArrayOfLetters);
+
+
+ArrayOfLetters.forEach(letter => {
+  grid.innerHTML += `<div class='block'>${letter}</div>`
+
+});
+
 
 const blocks = document.querySelectorAll('.block');
+const nextLevelBtn = document.getElementById('next');
 
 if (blocks.length > 0) {
   const blockArray = [...blocks];
-  blockArray.forEach((block) =>
-  block.addEventListener('click', (e) =>{
-    console.log(e.target);
+
+  blockArray.forEach(block => {
+    var green = false;
+
+    block.addEventListener('click', (e) => {
+      green = !green;
+      if (green) {
+        block.style.backgroundColor = '#07bf9d';
+        Newarray.push(block.innerHTML);
+      } else {
+        block.style.backgroundColor = '';
+        var index = Newarray.indexOf(block.innerHTML);
+        Newarray.splice(index, 1);
+        console.log(Newarray);
+      }
+    })
+
   })
-  );
 }
 
 
-//-----------Var Inits--------------
-canvas = document.getElementById("canvas");
-ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-cx = ctx.canvas.width / 2;
-cy = ctx.canvas.height / 2;
 
-let confetti = [];
-const confettiCount = 300;
-const gravity = 0.5;
-const terminalVelocity = 5;
-const drag = 0.075;
-const colors = [
-{ front: 'red', back: 'darkred' },
-{ front: 'green', back: 'darkgreen' },
-{ front: 'blue', back: 'darkblue' },
-{ front: 'yellow', back: 'darkyellow' },
-{ front: 'orange', back: 'darkorange' },
-{ front: 'pink', back: 'darkpink' },
-{ front: 'purple', back: 'darkpurple' },
-{ front: 'turquoise', back: 'darkturquoise' }];
-const action = document.getElementById('action')
+nextLevelBtn.addEventListener('click', (e) => {
+  if (Newarray[0] == level1Index[0] && Newarray[1] == level1Index[1] && Newarray[2] == level1Index[2]) {
+    console.log('word found');
 
+    modal.style.visibility = 'visible';
+    nextLevelBtn.style.display = 'none';
 
-//-----------Functions--------------
-resizeCanvas = () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  cx = ctx.canvas.width / 2;
-  cy = ctx.canvas.height / 2;
-};
+    reloadbtn.addEventListener('click', (e) => {
+      location.reload()
+    })
 
-randomRange = (min, max) => Math.random() * (max - min) + min;
+  } else {
+    console.log('word not found');
+    reloadbtn.innerHTML = 'Reload';
+    actionMsg.innerHTML = 'Word not found';
+    modal.style.visibility = 'visible';
+    nextLevelBtn.style.display = 'none';
 
-initConfetti = () => {
-  for (let i = 0; i < confettiCount; i++) {
-    confetti.push({
-      color: colors[Math.floor(randomRange(0, colors.length))],
-      dimensions: {
-        x: randomRange(10, 20),
-        y: randomRange(10, 30) },
-
-      position: {
-        x: randomRange(0, canvas.width),
-        y: canvas.height - 1 },
-
-      rotation: randomRange(0, 2 * Math.PI),
-      scale: {
-        x: 1,
-        y: 1 },
-
-      velocity: {
-        x: randomRange(-25, 25),
-        y: randomRange(0, -50) } });
-
-
+    reloadbtn.addEventListener('click', (e) => {
+      location.reload()
+    })
   }
-};
 
-//---------Render-----------
-render = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  confetti.forEach((confetto, index) => {
-    let width = confetto.dimensions.x * confetto.scale.x;
-    let height = confetto.dimensions.y * confetto.scale.y / 2;
-
-    // Move canvas to position and rotate
-    ctx.translate(confetto.position.x, confetto.position.y);
-    ctx.rotate(confetto.rotation);
-
-    // Apply forces to velocity
-    confetto.velocity.x -= confetto.velocity.x * drag;
-    confetto.velocity.y = Math.min(confetto.velocity.y + gravity, terminalVelocity);
-    confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
-
-    // Set position
-    confetto.position.x += confetto.velocity.x;
-    confetto.position.y += confetto.velocity.y;
-
-    // Delete confetti when out of frame
-    if (confetto.position.y >= canvas.height) confetti.splice(index, 1);
-
-    // Loop confetto x position
-    if (confetto.position.x > canvas.width) confetto.position.x = 0;
-    if (confetto.position.x < 0) confetto.position.x = canvas.width;
-
-    // Spin confetto by scaling y
-    confetto.scale.y = Math.cos(confetto.position.y * 0.1);
-    ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
-
-    // Draw confetti
-    ctx.fillRect(-width / 2, -height / 2, width, height);
-
-    // Reset transform matrix
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-  });
-
-  // Fire off another round of confetti
-  if (confetti.length <= 10) initConfetti();
-
-//   action.addEventListener('click', function () {
-    window.requestAnimationFrame(render);
-//   });
-};
-
-//---------Execution--------
-action.addEventListener('click', function () {
-    initConfetti();
-    render();
-  });
-
-
-//----------Resize----------
-window.addEventListener('resize', function () {
-  resizeCanvas();
-});
-
-//------------Click------------
-window.addEventListener('click', function () {
-  initConfetti();
-});
+})

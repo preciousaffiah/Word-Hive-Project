@@ -5,7 +5,7 @@
 // check if new array length is == 3 and check if it is equal to level1word
 
 
-const level1Words = [['b', 'u', 'r', 'n'], ['a', 'c', 'e'], ['f', 'o', 'u', 'g', 'h', 't'], ['d', 'o', 'g', 's'], ['e', 'l', 'e', 'v', 'a', 't', 'e', 'd'], ['a', 'c', 'c', 'e', 's', 's'], ['s', 'u', 'c', 'c', 'e', 's', 's'], ['p', 'r', 'i', 'n', 'g', 'l', 'e'], ['a', 'w', 'a', 'r', 'd'], ['a', 'b', 's', 'o', 'r', 'b'],  ['s', 't', 'r', 'e', 'e', 't'],  ['o', 'r', 'a', 'n', 'g', 'e'],  ['p', 'o', 'e', 't', 'r', 'y'], ['p', 'u', 'r', 'p', 'l', 'e'], ['i', 'n', 'c', 'h', 'e', 's'], ['c', 'u', 'r', 't', 'i', 's'], ['f', 'a', 'v', 'o', 'u', 'r'], ['t', 'r', 'a', 'v', 'i', 's'], ['b', 'a', 'd', 'e'], ['e', 'y', 'o']];
+const level1Words = [['b', 'u', 'r', 'n'], ['a', 'c', 'e'], ['f', 'o', 'u', 'g', 'h', 't'], ['d', 'o', 'g', 's'], ['e', 'l', 'e', 'v', 'a', 't', 'e', 'd'], ['a', 'c', 'c', 'e', 's', 's'], ['s', 'u', 'c', 'c', 'e', 's', 's'], ['p', 'r', 'i', 'n', 'g', 'l', 'e'], ['a', 'w', 'a', 'r', 'd'], ['a', 'b', 's', 'o', 'r', 'b'],  ['s', 't', 'r', 'e', 'e', 't'],  ['o', 'r', 'a', 'n', 'g', 'e'],  ['p', 'o', 'e', 't', 'r', 'y'], ['p', 'u', 'r', 'p', 'l', 'e'], ['i', 'n', 'c', 'h', 'e', 's'], ['c', 'u', 'r', 't', 'i', 's'], ['f', 'a', 'v', 'o', 'u', 'r'], ['t', 'r', 'a', 'v', 'i', 's'], ['b', 'a', 'd', 'e'], ['e', 'y', 'o'] , ['c', 'h', 'r', 'i', 's', 't', 'i', 'n', 'e']];
 var randomIndex3 = Math.floor(Math.random() * level1Words.length);
 var level1Index = level1Words[randomIndex3];
 const ArrayOfLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ...level1Index];

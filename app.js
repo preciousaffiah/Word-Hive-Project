@@ -43,6 +43,30 @@ ArrayOfLetters.forEach(letter => {
 
 });
 
+var timeOut = document.getElementById('timeOut');
+
+var timeleft = 10;
+var downloadTimer = setInterval(function () {
+  if (timeleft < 1) {
+    clearInterval(downloadTimer);
+    timeOut.innerHTML = " Time up! ";
+    console.log('time up');
+    reloadbtn.innerHTML = 'Reload';
+    actionMsg.innerHTML = 'Time up!';
+    modal.style.visibility = 'visible';
+    nextLevelBtn.style.display = 'none';
+
+    reloadbtn.addEventListener('click', (e) => {
+      location.reload()
+    })
+
+  } else {
+    timeOut.innerHTML = timeleft + ":00";
+
+  }
+  timeleft--;
+}, 1000);
+
 
 const blocks = document.querySelectorAll('.block');
 const nextLevelBtn = document.getElementById('next');
@@ -58,6 +82,31 @@ if (blocks.length > 0) {
       if (green) {
         block.style.backgroundColor = '#07bf9d';
         Newarray.push(block.innerHTML);
+        if (Newarray.length == 3) {
+          if (Newarray[0] == level1Index[0] && Newarray[1] == level1Index[1] && Newarray[2] == level1Index[2]) {
+            console.log('word found');
+
+            modal.style.visibility = 'visible';
+            nextLevelBtn.style.display = 'none';
+            clearInterval(downloadTimer);
+
+            reloadbtn.addEventListener('click', (e) => {
+              location.reload()
+            })
+
+          } else {
+            console.log('word not found');
+            reloadbtn.innerHTML = 'Reload';
+            actionMsg.innerHTML = 'Word not found';
+            modal.style.visibility = 'visible';
+            nextLevelBtn.style.display = 'none';
+            clearInterval(downloadTimer);
+
+            reloadbtn.addEventListener('click', (e) => {
+              location.reload()
+            })
+          }
+        }
       } else {
         block.style.backgroundColor = '';
         var index = Newarray.indexOf(block.innerHTML);
@@ -68,30 +117,3 @@ if (blocks.length > 0) {
 
   })
 }
-
-
-
-nextLevelBtn.addEventListener('click', (e) => {
-  if (Newarray[0] == level1Index[0] && Newarray[1] == level1Index[1] && Newarray[2] == level1Index[2]) {
-    console.log('word found');
-
-    modal.style.visibility = 'visible';
-    nextLevelBtn.style.display = 'none';
-
-    reloadbtn.addEventListener('click', (e) => {
-      location.reload()
-    })
-
-  } else {
-    console.log('word not found');
-    reloadbtn.innerHTML = 'Reload';
-    actionMsg.innerHTML = 'Word not found';
-    modal.style.visibility = 'visible';
-    nextLevelBtn.style.display = 'none';
-
-    reloadbtn.addEventListener('click', (e) => {
-      location.reload()
-    })
-  }
-
-})

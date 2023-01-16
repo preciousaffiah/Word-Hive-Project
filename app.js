@@ -1,13 +1,13 @@
-// randomize original array
-// make new array 
-// check if letter does not exist in new array and if the new array is upto 40 letters => push into new array
-// else if all leters have been pushed and non is repeating but array is not upto 40 letters => push letters into new array till array letters are up to 40
+// randomize original array and level1words array
+// set timer
+// make new array
+// check if tile background is green and push the tile to new array 
+// check if new array length is == 3 and check if it is equal to level1word
 
-const level1Words = [['t', 'a', 'p'], ['c', 'u', 'p'], ['p', 'e', 't'], ['a', 'c', 'e'], ['c', 'a', 'b'], ['d', 'o', 'g']];
+
+const level1Words = [['b', 'u', 'r', 'n'], ['a', 'c', 'e'], ['f', 'o', 'u', 'g', 'h', 't'], ['d', 'o', 'g', 's'], ['e', 'l', 'e', 'v', 'a', 't', 'e', 'd'], ['a', 'c', 'c', 'e', 's', 's'], ['s', 'u', 'c', 'c', 'e', 's', 's'], ['p', 'r', 'i', 'n', 'g', 'l', 'e'], ['a', 'w', 'a', 'r', 'd'], ['a', 'b', 's', 'o', 'r', 'b'],  ['s', 't', 'r', 'e', 'e', 't'],  ['o', 'r', 'a', 'n', 'g', 'e'],  ['p', 'o', 'e', 't', 'r', 'y'], ['p', 'u', 'r', 'p', 'l', 'e'], ['i', 'n', 'c', 'h', 'e', 's'], ['c', 'u', 'r', 't', 'i', 's'], ['f', 'a', 'v', 'o', 'u', 'r'], ['t', 'r', 'a', 'v', 'i', 's'], ['b', 'a', 'd', 'e'], ['e', 'y', 'o']];
 var randomIndex3 = Math.floor(Math.random() * level1Words.length);
-// level1Words.push(level1Words[randomIndex3]);
 var level1Index = level1Words[randomIndex3];
-console.log('word to find is ', level1Index);
 const ArrayOfLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ...level1Index];
 const grid = document.getElementById("grid");
 const reloadbtn = document.getElementById("reloadbtn");
@@ -16,104 +16,103 @@ const wordToFind = document.getElementById("wordToFind");
 const modal = document.querySelector('.modal');
 
 wordToFind.innerHTML = level1Index.join('');
-var Newarray = [];
 var currentIndex = ArrayOfLetters.length, randomIndex;
-// While there remain elements to shuffle. 
-while (currentIndex != 0) {
-  // Pick a remaining element.
-  randomIndex = Math.floor(Math.random() * currentIndex); currentIndex--;
-  // And swap it with the current element. 
-  [ArrayOfLetters[currentIndex], ArrayOfLetters[randomIndex]] = [ArrayOfLetters[randomIndex], ArrayOfLetters[currentIndex]];
-}
-
-if (ArrayOfLetters.length < 41) {
-  console.log('chee');
-  for (let i = 0; i < 12; i++) {
-    var randomIndex2 = Math.floor(Math.random() * ArrayOfLetters.length);
-    ArrayOfLetters.push(ArrayOfLetters[randomIndex2])
-
-  }
-}
-
-console.log(ArrayOfLetters);
-
-
-ArrayOfLetters.forEach(letter => {
-  grid.innerHTML += `<div class='block'>${letter}</div>`
-
-});
-
 var timeOut = document.getElementById('timeOut');
-
 var timeleft = 10;
-var downloadTimer = setInterval(function () {
-  if (timeleft < 1) {
-    clearInterval(downloadTimer);
-    timeOut.innerHTML = " Time up! ";
-    console.log('time up');
-    reloadbtn.innerHTML = 'Reload';
-    actionMsg.innerHTML = 'Time up!';
-    modal.style.visibility = 'visible';
-    nextLevelBtn.style.display = 'none';
+var Newarray = [];
 
-    reloadbtn.addEventListener('click', (e) => {
-      location.reload()
-    })
 
-  } else {
-    timeOut.innerHTML = timeleft + ":00";
-
+function displayTiles(){
+    // While there remain elements to shuffle. 
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex); currentIndex--;
+    // And swap it with the current element. 
+    [ArrayOfLetters[currentIndex], ArrayOfLetters[randomIndex]] = [ArrayOfLetters[randomIndex], ArrayOfLetters[currentIndex]];
   }
-  timeleft--;
+
+  if (ArrayOfLetters.length < 41) {
+    console.log('chee');
+    for (let i = 0; i < 12; i++) {
+      var randomIndex2 = Math.floor(Math.random() * ArrayOfLetters.length);
+      ArrayOfLetters.push(ArrayOfLetters[randomIndex2])
+
+    }
+  }
+
+  ArrayOfLetters.forEach(letter => {
+    grid.innerHTML += `<div class='block'>${letter}</div>`
+
+  });
+}
+
+var downloadTimer = setInterval(function () {
+    if (timeleft < 1) {
+      clearInterval(downloadTimer);
+      timeOut.innerHTML = " Time up! ";
+      console.log('time up');
+      reloadbtn.innerHTML = 'Reload';
+      actionMsg.innerHTML = 'Time up!';
+      modal.style.visibility = 'visible';
+  
+      reloadbtn.addEventListener('click', (e) => {
+        location.reload()
+      })
+  
+    } else {
+      timeOut.innerHTML = timeleft + ":00";
+  
+    }
+    timeleft--;
 }, 1000);
 
-
-const blocks = document.querySelectorAll('.block');
-const nextLevelBtn = document.getElementById('next');
-
-if (blocks.length > 0) {
-  const blockArray = [...blocks];
-
-  blockArray.forEach(block => {
-    var green = false;
-
-    block.addEventListener('click', (e) => {
-      green = !green;
-      if (green) {
-        block.style.backgroundColor = '#07bf9d';
-        Newarray.push(block.innerHTML);
-        if (Newarray.length == 3) {
-          if (Newarray[0] == level1Index[0] && Newarray[1] == level1Index[1] && Newarray[2] == level1Index[2]) {
-            console.log('word found');
-
-            modal.style.visibility = 'visible';
-            nextLevelBtn.style.display = 'none';
-            clearInterval(downloadTimer);
-
-            reloadbtn.addEventListener('click', (e) => {
-              location.reload()
-            })
-
-          } else {
-            console.log('word not found');
-            reloadbtn.innerHTML = 'Reload';
-            actionMsg.innerHTML = 'Word not found';
-            modal.style.visibility = 'visible';
-            nextLevelBtn.style.display = 'none';
-            clearInterval(downloadTimer);
-
-            reloadbtn.addEventListener('click', (e) => {
-              location.reload()
-            })
+function winOrfail() {
+  const blocks = document.querySelectorAll('.block');
+  if (blocks.length > 0) {
+    const blockArray = [...blocks];
+  
+    blockArray.forEach(block => {
+      var green = false;
+  
+      block.addEventListener('click', (e) => {
+        green = !green;
+        if (green) {
+          block.style.backgroundColor = '#07bf9d';
+          Newarray.push(block.innerHTML);
+          if (Newarray.length == wordToFind.innerHTML.length) {
+            if (Newarray.join('') == level1Index.join('')) {
+              console.log('word found');
+  
+              modal.style.visibility = 'visible';
+              clearInterval(downloadTimer);
+  
+              reloadbtn.addEventListener('click', (e) => {
+                location.reload()
+              })
+  
+            } else {
+              console.log('word not found');
+              reloadbtn.innerHTML = 'Reload';
+              actionMsg.innerHTML = 'Word not found';
+              modal.style.visibility = 'visible';
+              clearInterval(downloadTimer);
+  
+              reloadbtn.addEventListener('click', (e) => {
+                location.reload()
+              })
+            }
           }
+        } else {
+          block.style.backgroundColor = '';
+          var index = Newarray.indexOf(block.innerHTML);
+          Newarray.splice(index, 1);
+          console.log(Newarray);
         }
-      } else {
-        block.style.backgroundColor = '';
-        var index = Newarray.indexOf(block.innerHTML);
-        Newarray.splice(index, 1);
-        console.log(Newarray);
-      }
+      })
+  
     })
-
-  })
+  }
 }
+
+displayTiles();
+winOrfail();

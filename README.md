@@ -14,7 +14,7 @@ Welcome to WordSpell, a fun and challenging word game where you have to spell ou
 
 ## Demo
 
-Check out the live demo of WordSpell [here](https://word-hive-project.vercel.app).
+Check out the live demo of Word Hive [here](https://word-hive-project.vercel.app).
 
 ## Features
 

@@ -1,4 +1,4 @@
-# WordSpell Game
+# Word Hive
 
 Welcome to WordSpell, a fun and challenging word game where you have to spell out a random word using tiles before the timer runs out! This project is built with HTML, CSS, and JavaScript.
 
@@ -52,4 +52,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Screenshot
 
-![WordSpell Screenshot](path/to/screenshot.png)
+![wordhive](https://github.com/preciousaffiah/Word-Hive-Project/assets/74688829/e017af00-091d-4965-8028-a7608ae0583e)

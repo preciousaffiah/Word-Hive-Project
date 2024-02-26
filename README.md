@@ -26,7 +26,7 @@ Check out the live demo of Word Hive [here](https://word-hive-project.vercel.app
 
 To get started with WordSpell on your local machine, follow these instructions:
 
-1. Clone the repository: `git clone (https://github.com/preciousaffiah/Word-Hive-Project)`
+1. Clone the repository: `git clone https://github.com/preciousaffiah/Word-Hive-Project`
 2. Open the `index.html` file in your web browser.
 
 ## How to Play
